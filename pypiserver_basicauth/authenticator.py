@@ -38,6 +38,6 @@ class HTTPBasicAuthenticator(AuthenticatorInterface):
         if (self.config.basic_auth_url is None or
                 self.config.basic_auth_url == '.'):
             return True
-        response = requests.get(self.config.basic_auth_url,*request.auth)
+        response = requests.get(self.config.basic_auth_url,request.auth)
         # user is authenticated, if status code is 2xx
         return response.status_code in range(200, 299)
