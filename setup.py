@@ -5,7 +5,7 @@ from setuptools import find_packages, setup
 
 
 NAME = 'pypiserver-basicauth'
-MAINTAINER = 'René Magritz'
+MAINTAINER = 'Rene Magritz'
 MAINTAINER_EMAIL = 'pypiserver-basicauth@reney.de'
 URL = 'https://github.com/the-rene/pypiserver-basicauth'
 
