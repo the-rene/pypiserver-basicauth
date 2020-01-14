@@ -53,19 +53,19 @@ class GenericNamespace(object):
 def test_authenticate_basicauth(auth_server,valid_login):
     """Test authenticating against auth server"""
     conf = GenericNamespace(basic_auth_url=auth_server)
-    assert basicauthAuthenticator(conf).auuhenticate(valid_login)
+    assert HTTPBasicAuthenticator(conf).auuhenticate(valid_login)
 
 
 def test_authenticate_basicauth_fail(auth_server,invalid_login):
     """Test failing to authenticate against auth server."""
     conf = GenericNamespace(basic_auth_url=auth_server)
-    assert not basicauthAuthenticator(conf).authenticate(invalid_login)
+    assert not HTTPBasicAuthenticator(conf).authenticate(invalid_login)
 
 
 def test_authenticate_none(invalid_login):
     """Test overriding auth."""
     conf = GenericNamespace(basic_auth_url='.')
-    assert basicauthAuthenticator(conf).authenticate(invalid_login)
+    assert HTTPBasicAuthenticator(conf).authenticate(invalid_login)
 
 
 class TestConfig(object):
@@ -74,20 +74,20 @@ class TestConfig(object):
     def test_updating_parser(self):
         """Test the updating of the argument parser."""
         parser = ArgumentParser()
-        basicauthAuthenticator.update_parser(parser)
+        HTTPBasicAuthenticator.update_parser(parser)
         assert parser.parse_args().basic_auth_url is None
 
     def test_pull_from_env(self):
         """Test pulling from the environment."""
         with update_env(PYPISERVER_BASIC_AUTH_URL='foo'):
             parser = ArgumentParser()
-            basicauthAuthenticator.update_parser(parser)
+            HTTPBasicAuthenticator.update_parser(parser)
             assert parser.parse_args().basic_auth_url == 'foo'
 
     def test_direct_specification(self):
         """Test specifying the password file directly."""
         parser = ArgumentParser()
-        basicauthAuthenticator.update_parser(parser)
+        HTTPBasicAuthenticator.update_parser(parser)
         assert parser.parse_args(
             ['--http-basic-auth', 'bar']
         ).basic_auth_url == 'bar'
