@@ -5,7 +5,6 @@ from contextlib import contextmanager
 from os import environ, path, remove
 
 import pytest
-import requests
 from pypiserver_basicauth.authenticator import HTTPBasicAuthenticator
 
 
@@ -53,7 +52,7 @@ class GenericNamespace(object):
 def test_authenticate_basicauth(auth_server,valid_login):
     """Test authenticating against auth server"""
     conf = GenericNamespace(basic_auth_url=auth_server)
-    assert HTTPBasicAuthenticator(conf).auuhenticate(valid_login)
+    assert HTTPBasicAuthenticator(conf).authenticate(valid_login)
 
 
 def test_authenticate_basicauth_fail(auth_server,invalid_login):
