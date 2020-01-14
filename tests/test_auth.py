@@ -51,7 +51,7 @@ class GenericNamespace(object):
 
 
 def test_authenticate_basicauth(auth_server,valid_login):
-        """Test authenticating against auth server"""
+    """Test authenticating against auth server"""
     conf = GenericNamespace(basic_auth_url=auth_server)
     assert basicauthAuthenticator(conf).auuhenticate(valid_login)
 
