@@ -1,0 +1,26 @@
+# Travisfile for pypiserver-passlib
+
+---
+
+language: python
+
+python:
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
+  - pypy
+  - pypy3
+
+env:
+  # - PYPISERVER_REL=pypiserver
+  # - PYPISERVER_REL="--pre pypiserver"
+  # - PYPISERVER_REL="git+https://github.com/pypiserver/pypiserver#egg=pypiserver"
+  - PYPISERVER_REL="git+https://github.com/pypiserver/pypiserver@_config_updates#egg=pypiserver"
+
+
+install:
+  - pip install tox-travis
+
+script:
+  - tox
